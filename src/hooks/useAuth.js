@@ -1,13 +1,16 @@
 import { useState } from "react"
+import { useRouter } from "next/router"
 import { auth } from "../firebase/client"
-import { createUserWithEmailAndPassword } from "firebase/auth"
+import { 
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword
+} from "firebase/auth"
 
 //ユーザー登録
 export const useSignup = () => {
   const [error, setError] = useState(null)
 
   const signup = (email, password) => {
-    setError(null)
     createUserWithEmailAndPassword(auth, email, password)
       .then(res => {
         console.log(res.user)
@@ -26,11 +29,15 @@ export const useLogin = () => {
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState(null)
 
+  const router = useRouter()
+
   const login = (email, password) => {
-    setError(null)
-    signInWithEmailAndPassword(fireauth, email, password)
+    signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         setSuccess(true)
+        setTimeout(() => {
+          router.push("/")
+        }, 2000);
       })
       .catch(err => {
         console.log(err.message)

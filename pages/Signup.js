@@ -1,16 +1,7 @@
 import React, { useState } from "react"
-import {
-  Avatar,
-  Alert,
-  Button,
-  CssBaseline,
-  TextField,
-  Box,
-  Typography,
-  Container,
-} from "@mui/material"
+import * as mui from "@mui/material"
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined"
-import { useSignup } from "../../src/hooks/useAuth"
+import { useSignup } from "../src/hooks/useAuth"
 
 const Signup = () => {
   const [email, setEmail] = useState("")
@@ -24,9 +15,9 @@ const Signup = () => {
   }
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <Box
+    <mui.Container component="main" maxWidth="xs">
+      <mui.CssBaseline />
+      <mui.Box
         sx={{
           marginTop: 8,
           display: "flex",
@@ -34,14 +25,14 @@ const Signup = () => {
           alignItems: "center",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "success.main" }}>
+        <mui.Avatar sx={{ m: 1, bgcolor: "success.main" }}>
           <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
+        </mui.Avatar>
+        <mui.Typography component="h1" variant="h5">
           ユーザー登録
-        </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <TextField
+        </mui.Typography>
+        <mui.Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <mui.TextField
             margin="normal"
             required
             fullWidth
@@ -53,7 +44,7 @@ const Signup = () => {
             value={email}
             onChange={e => setEmail(e.target.value)}
           />
-          <TextField
+          <mui.TextField
             margin="normal"
             required
             fullWidth
@@ -62,23 +53,31 @@ const Signup = () => {
             type="password"
             id="password"
             autoComplete="current-password"
+            helperText="6文字以上の英数字"
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
-          <Button
+          <mui.Button
             type="submit"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2, bgcolor: "success.main" }}
           >
             ユーザー登録
-          </Button>
+          </mui.Button>
+          <mui.Grid container sx={{ justifyContent: "center" }}>
+            <mui.Grid item>
+              <mui.Link href="Login" variant="p">
+                ログインはこちら
+              </mui.Link>
+            </mui.Grid>
+          </mui.Grid>
           {
-            error && <Alert severity="error">ユーザー登録に失敗しました</Alert>
+            error && <mui.Alert severity="error">ユーザー登録に失敗しました</mui.Alert>
           }
-        </Box>
-      </Box>
-    </Container>
+        </mui.Box>
+      </mui.Box>
+    </mui.Container>
   )
 }
 export default Signup
