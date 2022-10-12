@@ -12,18 +12,18 @@ import { useLogout } from '../src/hooks/useAuth'
 
 const Main = () => {
   const router = useRouter()
-
+  const [user,setUser] = useState(null)
   const { logout } = useLogout()
 
   //ログインしていない場合、ログインページに移動させる
   useEffect(() => {
-    
     auth.onAuthStateChanged((user) => {
       if (!user){
         void router.push("/Login")
       } else {
+        setUser(user)
         console.log(user.email)
-      } 
+      }
     })
   },[])
   
@@ -32,7 +32,7 @@ const Main = () => {
     void router.push("/Login")
   }
 
-  return (
+  return user ? (
     <div className={styles.container}>
       <Head>
         <title>のっティGO</title>
@@ -47,6 +47,8 @@ const Main = () => {
         <Footer />
       </main>
     </div>
-  )
+  ): 
+  <>
+  </>
 }
 export default Main
