@@ -3,7 +3,8 @@ import { useRouter } from "next/router"
 import { auth } from "../firebase/client"
 import { 
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  signOut
 } from "firebase/auth"
 
 //ユーザー登録
@@ -46,4 +47,18 @@ export const useLogin = () => {
   }
 
   return { success, error, login }
+}
+
+export const useLogout = () => {
+  const logout = () => {
+    signOut(auth)
+      .then(() => {
+        console.log("Sign-out successful.")
+      })
+      .catch(err => {
+        console.log(err.message)
+      })
+  }
+
+  return { logout }
 }

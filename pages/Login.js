@@ -42,7 +42,7 @@ const Login = () => {
             name="email"
             autoComplete="email"
             autoFocus
-            value={email}
+            value={email || ""}
             onChange={e => setEmail(e.target.value)}
           />
           <mui.TextField
@@ -54,7 +54,7 @@ const Login = () => {
             type="password"
             id="password"
             autoComplete="current-password"
-            value={password}
+            value={password || ""}
             onChange={e => setPassword(e.target.value)}
           />
           <mui.Button
