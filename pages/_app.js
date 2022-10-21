@@ -4,6 +4,7 @@ import { ThemeProvider, createTheme } from '@mui/material'
 
 //全ページに反映させる処理を記述する
 function MyApp({ Component, pageProps }) {
+  //レイアウトのテーマを設定
   const theme = createTheme()
   return (
   <ThemeProvider theme={theme}>

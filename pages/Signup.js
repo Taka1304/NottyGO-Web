@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { useRouter } from "next/router"
 import * as mui from "@mui/material"
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined"
 import { useSignup } from "../src/hooks/useAuth"
@@ -7,11 +8,21 @@ const Signup = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
-  const { signup, error } = useSignup()
+  const { success, error ,signup } = useSignup()
+  const router = useRouter()
 
+  //Submit(EnterKey or Button push)
   const handleSubmit = (event) => {
     event.preventDefault()
     signup(email, password)
+  }
+  
+  // ユーザー登録成功時
+  if (success) {
+    setTimeout(() => {
+      //メインページへ遷移
+      void router.push("/")
+    }, 1500) //1.5秒 delay
   }
 
   return (
@@ -67,13 +78,16 @@ const Signup = () => {
           </mui.Button>
           <mui.Grid container sx={{ justifyContent: "center" }}>
             <mui.Grid item>
-              <mui.Link href="Login" variant="p">
+              <mui.Link href="login" variant="p">
                 ログインはこちら
               </mui.Link>
             </mui.Grid>
           </mui.Grid>
           {
-            error && <mui.Alert severity="error">ユーザー登録に失敗しました</mui.Alert>
+            error && !success && <mui.Alert severity="error">ユーザー登録に失敗しました</mui.Alert>
+          }
+          {
+            success && !error && <mui.Alert severity="success">ユーザー登録しました</mui.Alert>
           }
         </mui.Box>
       </mui.Box>
