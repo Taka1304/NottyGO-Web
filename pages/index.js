@@ -9,6 +9,7 @@ import Footer from '../src/components/Footer'
 import Header from '../src/components/Header'
 import { useLogout } from '../src/hooks/useAuth'
 
+
 //Topページ
 const Main = () => {
   const router = useRouter()
@@ -42,7 +43,7 @@ const Main = () => {
       <main className={styles.main}>
         <Header />
         {!user ? <p>ログインしていません</p> : <p>{user.email}でログイン中です</p>}
-        <Button onClick={handleLogout} >ログアウト</Button>
+        <Button variant="outlined" onClick={handleLogout}>ログアウト</Button>
         <p>これはメインページです</p>
         <Footer />
       </main>

@@ -11,6 +11,6 @@ export const userAuth = getAuth(userApp)
 export const userDB = getFirestore(userApp)
 
 //バスの位置情報が格納されているFirebaseプロジェクトを初期化
-// const busApp = initializeApp(busFirebaseConfig, 'buslocaiton')
+const busApp = initializeApp(busFirebaseConfig, 'buslocaiton')
 
-// export const busRTDB = getDatabase(busApp)
+export const busRTDB = getDatabase(busApp)
