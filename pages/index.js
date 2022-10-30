@@ -4,10 +4,10 @@ import { useRouter } from "next/router"
 import { Button } from '@mui/material'
 
 import { userAuth } from '../src/firebase/client'
+import { useLogout } from '../src/hooks/useAuth'
 import styles from '../styles/Home.module.css'
 import Footer from '../src/components/Footer'
 import Header from '../src/components/Header'
-import { useLogout } from '../src/hooks/useAuth'
 
 
 //Topページ

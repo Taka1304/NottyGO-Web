@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useRouter } from "next/router"
 import { userAuth, userDB } from "../firebase/client"
-import { FieldValue } from "firebase/firestore"
+import { doc, getDoc, serverTimestamp, collection, setDoc } from "firebase/firestore"
 import { 
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -17,19 +17,17 @@ export const useSignup = () => {
   const signup = (email, password) => {
     createUserWithEmailAndPassword(userAuth, email, password)
       .then(async res => {
-        //console.log(res.user)
         setSuccess(true)
 
         // email: string
         // stamp: number
         // updateAt: TimeStamp
-        const data = {
+        //FireStoreにユーザーデータを追加
+        await setDoc(doc(collection(userDB, 'users'), res.user.uid),{
           email: res.user.email,
           stamp: 0,
-          updateAt: FieldValue.serverTimeStamp()
-        }
-        //FireStoreにユーザーデータを追加
-        await userDB.collection('users').doc(`${res.user.uid}`).set(data)
+          updateAt: serverTimestamp()
+        })
       })
       .catch(err => {
         console.log(err.message)
@@ -49,7 +47,7 @@ export const useLogin = () => {
 
   const login = (email, password) => {
     signInWithEmailAndPassword(userAuth, email, password)
-      .then(() => {
+      .then(async() => {
         setSuccess(true)
         setTimeout(() => {
           void router.push("/")

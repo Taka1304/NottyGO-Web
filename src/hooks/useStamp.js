@@ -1,22 +1,25 @@
-import { async } from "@firebase/util"
-import { FieldValue } from "firebase/firestore"
+import { FieldValue, getDoc, doc, collection } from "firebase/firestore"
 import { useState } from "react"
 import { userDB } from "../firebase/client"
 
 export const useStampNumber = () => {
-  const [error, setError] = useState(null)
   const [stamp, setStamp] = useState()
 
-  const stampNumber = async ({uid}) => {
-    const doc = await userDB.collection('users').doc(`${uid}`).get()
-    if (!doc.exists) {
-      setError("error")
-    } else {
-      setStamp(doc.data().stamp)
+  const stampNumber = async (uid) => {
+    try {
+      const snapshot = await getDoc(doc(collection(userDB, 'users'), uid))
+      if (snapshot.exists()) {
+        setStamp(snapshot.data().stamp)
+      } else {
+        console.log("snapshot underfind")
+      }
+    }
+    catch (error) {
+      console.log(error)
     }
   }
 
-  return {stamp, error, stampNumber}
+  return { stamp, stampNumber }
 } 
 
 export const useGetStamp = () => {
@@ -24,9 +27,9 @@ export const useGetStamp = () => {
   const [error, setError] = useState()
 
   const getStamp = async ({uid}) => {
-    const ref = userDB.collection('users').doc(`${uid}`)
+    const userRef = doc(collection(userDB, '/users'), uid)
     try {
-      await ref.update({
+      await userRef.update({
         stamp: FieldValue.increment(1)
       })
       setSuccess(true)
