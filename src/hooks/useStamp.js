@@ -1,15 +1,23 @@
-import { FieldValue, getDoc, doc, collection } from "firebase/firestore"
+import { FieldValue, getDoc, doc, collection, serverTimestamp } from "firebase/firestore"
 import { useState } from "react"
 import { userDB } from "../firebase/client"
 
-export const useStampNumber = () => {
-  const [stamp, setStamp] = useState()
+export const useUserData = () => {
+  const [userData, setUserData] = useState({
+    email: "",
+    stamp: 0,
+    updateAt: {
+      nanoseconds: 0,
+      seconds: 0
+    }
+  })
 
-  const stampNumber = async (uid) => {
+  const getUserData = async (uid) => {
     try {
       const snapshot = await getDoc(doc(collection(userDB, 'users'), uid))
       if (snapshot.exists()) {
-        setStamp(snapshot.data().stamp)
+        setUserData(snapshot.data())
+        console.log(snapshot.data())
       } else {
         console.log("snapshot underfind")
       }
@@ -19,7 +27,7 @@ export const useStampNumber = () => {
     }
   }
 
-  return { stamp, stampNumber }
+  return { userData, getUserData }
 } 
 
 export const useGetStamp = () => {
@@ -29,12 +37,14 @@ export const useGetStamp = () => {
   const getStamp = async ({uid}) => {
     const userRef = doc(collection(userDB, '/users'), uid)
     try {
+      //データの更新
       await userRef.update({
-        stamp: FieldValue.increment(1)
+        stamp: FieldValue.increment(1),
+        updateAt: serverTimestamp()
       })
       setSuccess(true)
-    } catch (e) {
-      setError(e)
+    } catch (error) {
+      setError(error)
     }
   }
 

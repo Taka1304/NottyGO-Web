@@ -9,7 +9,6 @@ import styles from '../styles/Home.module.css'
 import Footer from '../src/components/Footer'
 import Header from '../src/components/Header'
 
-
 //Topページ
 const Main = () => {
   const router = useRouter()
@@ -42,7 +41,7 @@ const Main = () => {
       </Head>
       <main className={styles.main}>
         <Header />
-        {!user ? <p>ログインしていません</p> : <p>{user.email}でログイン中です</p>}
+        {!user ? <p>ログインしていません<Button variant="outlined" href="/login">ログイン</Button></p> : <p>{user.email}でログイン中です</p>}
         <Button variant="outlined" onClick={handleLogout}>ログアウト</Button>
         <p>これはメインページです</p>
         <Footer />
