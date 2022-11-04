@@ -1,14 +1,16 @@
-import React from 'react'
-
+import React from "react";
+import {makeStyles} from "@mui/styles";
+const useStyles = makeStyles({
+  footer: {
+    color: "#FFFFFF",
+    backgroundColor: "#6495ED",
+    width: "100%",
+    position: "absolute",
+    bottom: 0,
+  },
+});
 const Footer = () => {
-  return (
-    <footer>
-      <div>
-        aiueo
-      </div>
-
-    </footer>
-  )
-}
-
-export default Footer
+  const classes = useStyles();
+  return <div className={classes.footer}>のっティ株式会社</div>;
+};
+export default Footer;
