@@ -17,15 +17,20 @@ const Stamp = () => {
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
-    const busref = ref(busRTDB)
-    //テストとして中央ルートのデータを一度だけ取得
-    get(child(busref, "BusLocation/route_c"))
-      .then((snapshot) => {
-        snapshot.exists() ? setBusData(snapshot.val()) : null
-      })
-      .catch(error => {
-        console.log(error)
-      })
+    if (busRTDB == null) {
+      // ダミーデータ
+      setBusData({lat: 132.0000, lng: 55.0000, time: 150000})
+    } else {
+      const busref = ref(busRTDB)
+      // テストとして中央ルートのデータを一度だけ取得
+      get(child(busref, "BusLocation/route_c"))
+        .then((snapshot) => {
+          snapshot.exists() ? setBusData(snapshot.val()) : null
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    }
     userAuth.onAuthStateChanged((user) => {
       if (!user){
         // void router.push("/login")
@@ -33,7 +38,7 @@ const Stamp = () => {
         setUid(user.uid)
         getUserData(user.uid)
       }
-    })
+    }) 
   },[])
   return (
     <>
