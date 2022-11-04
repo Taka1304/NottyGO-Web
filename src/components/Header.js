@@ -110,7 +110,7 @@ function ResponsiveAppBar() {
             {pages.map((page) => (
               <Button
                 key={page}
-                href={``}
+                href="https://www.city.nonoichi.lg.jp/site/notty/"
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
@@ -120,12 +120,13 @@ function ResponsiveAppBar() {
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              <IconButton onClick={handleOpenUserMenu} href="/login"  sx={{ p: 0 }}>
+                <Avatar alt="L" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
             <Menu
               sx={{ mt: '45px' }}
+
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
@@ -142,7 +143,7 @@ function ResponsiveAppBar() {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                  <Typography textAlign="center"> {setting}</Typography>
                 </MenuItem>
               ))}
             </Menu>
