@@ -8,7 +8,7 @@ PD実践にて作成
 | framework | Next.js            |
 | style     | styled-components  |
 |           | MUI    |
-|        | firebase |
+|    api    | firebase |
 
 ### 1.yarnのインストール
 ```
@@ -31,7 +31,8 @@ yarn install
 ```
 
 ### 3.環境変数ファイルを持ってくる
-- 編集中
+- ルートディレクトリ直下に  .env.local　というファイルを作成する
+- Boxの環境変数.txtの中身をコピーペースト
 
 ### 4.開発環境で動作確認
 ```
