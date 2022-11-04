@@ -12,5 +12,5 @@ export const userDB = getFirestore(userApp)
 
 //バスの位置情報が格納されているFirebaseプロジェクトを初期化
 const busApp = initializeApp(busFirebaseConfig, 'buslocaiton')
-
-export const busRTDB = getDatabase(busApp)
+// 環境変数がない場合、nullにしておく
+export const busRTDB = process.env.NEXT_PUBLIC_API_KEY != undefined ? getDatabase(busApp) : null

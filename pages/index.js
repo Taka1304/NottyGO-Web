@@ -32,19 +32,19 @@ const Main = () => {
   }
 
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>のっティGO</title>
         <meta name="description" 
           content="のっティに乗ってポイントをゲット！お得にのっティを利用しよう！" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Header />
       <main className={styles.main}>
-        <Header />
         {!user ? <p>ログインしていません<Button variant="outlined" href="/login">ログイン</Button></p> : <p>{user.email}でログイン中です</p>}
         <Button variant="outlined" onClick={handleLogout}>ログアウト</Button>
         <p>これはメインページです</p>
-        <Footer />
+      <Footer />
       </main>
     </div>
   )

@@ -4,7 +4,9 @@ import { ref, get, child } from 'firebase/database'
 import { busRTDB, userAuth } from '../src/firebase/client'
 
 const Stamp = () => {
+  // ユーザーデータの状態を管理
   const [uid, setUid] = useState(null)
+  // バスの位置情報の状態を管理
   const [busData, setBusData] = useState({
     lat: 0,
     lng: 0,
