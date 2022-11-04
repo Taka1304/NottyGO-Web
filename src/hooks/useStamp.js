@@ -17,7 +17,6 @@ export const useUserData = () => {
       const snapshot = await getDoc(doc(collection(userDB, 'users'), uid))
       if (snapshot.exists()) {
         setUserData(snapshot.data())
-        console.log(snapshot.data())
       } else {
         console.log("snapshot underfind")
       }
