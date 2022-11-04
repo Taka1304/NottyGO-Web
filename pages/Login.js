@@ -10,6 +10,7 @@ const Login = () => {
 
   const { success, error, login } = useLogin()
 
+  //Submit(EnterKey or Button push)
   const handleSubmit = (event) => {
     event.preventDefault()
     login(email, password)
@@ -72,16 +73,16 @@ const Login = () => {
               </mui.Link>
             </mui.Grid>
             <mui.Grid item>
-              <mui.Link href="Signup" variant="body2">
+              <mui.Link href="signup" variant="body2">
                 アカウントをお持ちでない方
               </mui.Link>
             </mui.Grid>
           </mui.Grid>
           {
-            error && <mui.Alert severity="error">ログインできませんでした</mui.Alert>
+            error && !success && <mui.Alert severity="error">ログインできませんでした</mui.Alert>
           }
           {
-            success && <mui.Alert severity="success">ログインしました</mui.Alert>
+            success && !error && <mui.Alert severity="success">ログインしました</mui.Alert>
           }
         </mui.Box>
       </mui.Box>

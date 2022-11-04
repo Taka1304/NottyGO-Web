@@ -1,20 +1,34 @@
 import { useState } from "react"
 import { useRouter } from "next/router"
-import { auth } from "../firebase/client"
+import { userAuth, userDB } from "../firebase/client"
+import { doc, getDoc, serverTimestamp, collection, setDoc, Timestamp } from "firebase/firestore"
 import { 
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut
+  signOut,
+  sendPasswordResetEmail
 } from "firebase/auth"
 
 //ユーザー登録
 export const useSignup = () => {
+  const [success, setSuccess] = useState(false)
   const [error, setError] = useState(null)
 
   const signup = (email, password) => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(res => {
-        console.log(res.user)
+    createUserWithEmailAndPassword(userAuth, email, password)
+      .then(async res => {
+        setSuccess(true)
+
+        // email: string
+        // stamp: number
+        // updateAt: TimeStamp(初期値は0)
+        //FireStoreにユーザーデータを追加
+        
+        await setDoc(doc(collection(userDB, 'users'), res.user.uid),{
+          email: res.user.email,
+          stamp: 0,
+          updateAt: Timestamp.fromDate(new Date(null))
+        })
       })
       .catch(err => {
         console.log(err.message)
@@ -22,7 +36,7 @@ export const useSignup = () => {
       })
   }
 
-  return { error, signup }
+  return { success, error, signup }
 }
 
 //ログイン
@@ -33,12 +47,12 @@ export const useLogin = () => {
   const router = useRouter()
 
   const login = (email, password) => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
+    signInWithEmailAndPassword(userAuth, email, password)
+      .then(async() => {
         setSuccess(true)
         setTimeout(() => {
-          router.push("/")
-        }, 2000);
+          void router.push("/")
+        }, 1000);
       })
       .catch(err => {
         console.log(err.message)
@@ -49,11 +63,12 @@ export const useLogin = () => {
   return { success, error, login }
 }
 
+//ログアウト
 export const useLogout = () => {
   const logout = () => {
-    signOut(auth)
+    signOut(userAuth)
       .then(() => {
-        console.log("Sign-out successful.")
+        console.log("ログアウト成功")
       })
       .catch(err => {
         console.log(err.message)
@@ -61,4 +76,28 @@ export const useLogout = () => {
   }
 
   return { logout }
+}
+
+//パスワードリセット
+export const usePasswordReset = () => {
+  const [success, setSuccess] = useState(false)
+  const [error, setError] = useState(null)
+  
+  const router = useRouter()
+  
+  const passwordReset = (email) => {
+    sendPasswordResetEmail(userAuth, email)
+      .then(() => {
+        setSuccess(true)
+        setTimeout(() => {
+          void router.push("/login")
+        }, 2000)
+      })
+      .catch(err => {
+        console.log(err.message)
+        setError(err.message)
+      })
+  }
+
+  return { success, error, passwordReset }
 }
