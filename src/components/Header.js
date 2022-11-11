@@ -112,13 +112,16 @@ function ResponsiveAppBar() {
                 horizontal: 'left',
               }}
               open={Boolean(anchorElNav)}
-              onClose={setAnchorElNav(null)}
+              onClose={() => setAnchorElNav(null)}
               sx={{
                 display: { xs: 'block', md: 'none' },
               }}
             >
               {menuPages.map((page) => (
-                <MenuItem key={page.label} onClick={setAnchorElNav(null)}>
+                <MenuItem key={page.label} role={"a"} 
+                  onClick={() => 
+                  setAnchorElNav(null)
+                }>
                   <Typography textAlign="center">{page.label}</Typography>
                 </MenuItem>
               ))}
@@ -175,7 +178,7 @@ function ResponsiveAppBar() {
                 horizontal: 'right',
               }}
               open={Boolean(anchorElUser)}
-              onClose={setAnchorElUser(null)}
+              onClose={() => setAnchorElUser(null)}
             >
               {userPages.map((page) => (
                 <MenuItem 
