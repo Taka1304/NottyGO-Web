@@ -68,7 +68,7 @@ const Login = () => {
           </mui.Button>
           <mui.Grid container>
             <mui.Grid item xs>
-              <mui.Link href="#" variant="body2">
+              <mui.Link href="passwordreset" variant="body2">
                 パスワードを忘れた方
               </mui.Link>
             </mui.Grid>

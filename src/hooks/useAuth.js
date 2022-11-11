@@ -65,17 +65,21 @@ export const useLogin = () => {
 
 //ログアウト
 export const useLogout = () => {
+  const [success, setSuccess] =useState(false)
+  const [error, setError] = useState(null)
+
   const logout = () => {
     signOut(userAuth)
       .then(() => {
-        console.log("ログアウト成功")
+        setSuccess(true)
       })
       .catch(err => {
-        console.log(err.message)
+        setSuccess(false)
+        setError(err.message)
       })
   }
 
-  return { logout }
+  return { success, error, logout }
 }
 
 //パスワードリセット

@@ -1,7 +1,8 @@
-import { FieldValue, getDoc, doc, collection, serverTimestamp } from "firebase/firestore"
 import { useState } from "react"
+import { FieldValue, getDoc, doc, collection, serverTimestamp } from "firebase/firestore"
 import { userDB } from "../firebase/client"
 
+// ユーザーのスタンプデータを取得するための関数
 export const useUserData = () => {
   const [userData, setUserData] = useState({
     email: "",
@@ -29,6 +30,7 @@ export const useUserData = () => {
   return { userData, getUserData }
 } 
 
+// スタンプを取得した場合のFirestore上の処理
 export const useGetStamp = () => {
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState()

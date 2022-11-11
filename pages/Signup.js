@@ -52,7 +52,7 @@ const Signup = () => {
             name="email"
             autoComplete="email"
             autoFocus
-            value={email}
+            value={email || ""}
             onChange={e => setEmail(e.target.value)}
           />
           <mui.TextField
@@ -65,7 +65,7 @@ const Signup = () => {
             id="password"
             autoComplete="current-password"
             helperText="6文字以上の英数字"
-            value={password}
+            value={password || ""}
             onChange={e => setPassword(e.target.value)}
           />
           <mui.Button
