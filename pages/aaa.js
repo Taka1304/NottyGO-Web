@@ -6,7 +6,7 @@ const ErrorText = () => (
   <p className="App-error-text">geolocation IS NOT available</p>
 );
 
-export default () => {
+export default function A() {
   const [isAvailable, setAvailable] = useState(false);
   const [position, setPosition] = useState({ latitude: null, longitude: null });
 

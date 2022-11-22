@@ -27,7 +27,10 @@ export const useSignup = () => {
         await setDoc(doc(collection(userDB, 'users'), res.user.uid),{
           email: res.user.email,
           stamp: 0,
-          updateAt: Timestamp.fromDate(new Date(null))
+          updateAt: Timestamp.fromDate(new Date(null)),
+          coupon : [{
+            name: "test"
+          }]
         })
       })
       .catch(err => {
