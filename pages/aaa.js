@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 // import './App.css';
-import { check } from './check';
 /* エラーテキスト */
 const ErrorText = () => (
   <p className="App-error-text">geolocation IS NOT available</p>
@@ -49,7 +48,6 @@ export default function A() {
             <br />
             longitude: {position.longitude}
             <br />
-            {check(position) ? <p>true</p> : <p>false</p>}
           </div>
         </div>
       )}
