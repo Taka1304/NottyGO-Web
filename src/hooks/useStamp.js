@@ -9,8 +9,10 @@ export const useUserData = () => {
     email: "",
     stamp: 0,
     updateAt: {
-      seconds: 0
+      seconds: 0,
+      nanoseconds: 0
     },
+    date: new Date(1),
     coupon: []
   })
 
@@ -18,7 +20,9 @@ export const useUserData = () => {
     try {
       const snapshot = await getDoc(doc(collection(userDB, 'users'), uid))
       if (snapshot.exists()) {
-        setUserData(snapshot.data())
+        const data = snapshot.data()
+        data.date = data.updateAt.toDate()
+        setUserData(data)
       } else {
         console.log("snapshot underfind")
       }
@@ -50,7 +54,18 @@ export const useUserPosition = () => {
     // console.log(pos.coords)
     setPosition({lat: pos.coords.latitude, lng: pos.coords.longitude, accuracy: pos.coords.accuracy})
   }
-  const onError = (e) => setError(e.message)
+  const onError = (e) => {
+    switch (e.code) {
+      case 1:
+        setError("位置情報の使用を許可してください")
+        break
+      case 2:
+        setError("内部エラーが発生しました。")
+        break
+      case 3:
+        setError("取得時間制限を超過しました。")
+    }
+  }
 
   const getPosition = () => {
     console.log("Search Current Position")  // 探索開始

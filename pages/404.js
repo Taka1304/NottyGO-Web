@@ -1,9 +1,10 @@
 import React from 'react'
 
-const a404 = () => {
+const CustomErrorPage404 = () => {
+  // 時間ないから後回し
   return (
     <div>404</div>
   )
 }
 
-export default a404
+export default CustomErrorPage404
