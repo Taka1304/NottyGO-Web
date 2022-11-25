@@ -11,6 +11,6 @@ const useStyles = makeStyles({
 });
 const Footer = () => {
   const classes = useStyles();
-  return <div className={classes.footer}>のっティ株式会社</div>;
+  return <div className={classes.footer}>情報工学科2年<br />EP-E3班</div>;
 };
 export default Footer;

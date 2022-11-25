@@ -118,7 +118,7 @@ function ResponsiveAppBar() {
               }}
             >
               {menuPages.map((page) => (
-                <MenuItem key={page.label} role={"a"} 
+                <MenuItem key={page.label} component="a" href={page.link} 
                   onClick={() => 
                   setAnchorElNav(null)
                 }>
@@ -150,6 +150,7 @@ function ResponsiveAppBar() {
             {menuPages.map((page) => (
               <Button
                 key={page.label}
+                component="a" 
                 href={page.link}
                 onClick={() => setAnchorElNav(null)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
@@ -183,13 +184,15 @@ function ResponsiveAppBar() {
             >
               {userPages.map((page) => (
                 <MenuItem 
-                  key={page.label} 
+                  key={page.label}
+                  component="a" 
+                  href={page.link}
                   onClick={() => {
                     page.label == 'ログアウト' && logout()
                     setAnchorElUser(null)}
                   }
                   >
-                  <Typography textAlign="center" href={page.link}>{page.label}</Typography>
+                  <Typography textAlign="center" >{page.label}</Typography>
                 </MenuItem>
               ))}
               {/* <MenuItem onClick={() => {

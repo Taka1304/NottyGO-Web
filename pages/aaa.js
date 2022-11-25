@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 // import './App.css';
-import { check } from './check';
 /* エラーテキスト */
 const ErrorText = () => (
   <p className="App-error-text">geolocation IS NOT available</p>
 );
 
-export default () => {
+export default function A() {
   const [isAvailable, setAvailable] = useState(false);
   const [position, setPosition] = useState({ latitude: null, longitude: null });
 
@@ -49,7 +48,6 @@ export default () => {
             <br />
             longitude: {position.longitude}
             <br />
-            {check(position) ? <p>true</p> : <p>false</p>}
           </div>
         </div>
       )}
