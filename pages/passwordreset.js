@@ -12,12 +12,15 @@ import {
   Link,
 } from "@mui/material"
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined"
+import { usePasswordReset } from "../src/hooks/useAuth"
 
 export default function PasswordReset() {
   const [email, setEmail] = useState("")
+  const { success, error, passwordReset} = usePasswordReset()
 
   const handleSubmit = (event) => {
     event.preventDefault()
+    passwordReset(email)
   }
 
   return (
