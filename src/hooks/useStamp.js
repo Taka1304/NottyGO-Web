@@ -72,7 +72,7 @@ export const useUserPosition = () => {
   }
 
   const getPosition = () => {
-    console.log("Search Current Position")  // 探索開始
+    // console.log("Search Current Position")  // 探索開始
     const watchId = navigator.geolocation.watchPosition(onSuccess, onError, options)
     setSuccess(false)
     // 5秒で終了する

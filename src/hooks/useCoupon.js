@@ -28,7 +28,7 @@ export const useCoupon = () => {
       })
     }
 
-    console.log(...couponArray)
+    // console.log(...couponArray)
 
     try {
       //データの更新
