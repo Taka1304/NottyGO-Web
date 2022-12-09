@@ -16,6 +16,7 @@ const Stamp = () => {
 
   const today = new Date()
   const [t_year, t_month, t_day] = [today.getFullYear(), today.getMonth(), today.getDay()]
+  
   // ボタン押したときの処理
   const handleSubmit = (event) => {
     event.preventDefault()

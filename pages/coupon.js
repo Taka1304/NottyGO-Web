@@ -20,8 +20,7 @@ const Coupon = () => {
         getUserData(user.uid)
       }
     })
-  },[])
-
+  },[open])
 
   const handleClick = (event) => {
     event.preventDefault()
@@ -39,8 +38,9 @@ const Coupon = () => {
         <h3>クーポン一覧</h3>
         <Button variant='text' onClick={handleClick}>クーポンを交換する</Button>
       </div>
-      {userData.coupon ? userData.coupon.map((cpn) => (
-        <div key={cpn}>
+      
+      {userData.coupon ? userData.coupon.map((cpn, i) => (
+        <div key={i}>
           <CouponCard data={cpn}/>
         </div>
       )): null}

@@ -46,13 +46,17 @@ export const useUserPosition = () => {
   const [su, setSuccess] = useState(false)
 
   const options = {
-    maximumAge: 1000,  // キャッシュをほぼ利用不可
-    timeout: 4900, // 4900ミリ秒(4.9秒)まで許可
+    maximumAge: 0,  // キャッシュを利用不可
+    timeout: 4900, // 4900ミリ秒(4.9秒)を過ぎても取得できない場合、タイムアウトエラーを吐く
     enableHighAccuracy: true  // 高精度を求める
   }
   const onSuccess = (pos) => {
     // console.log(pos.coords)
-    setPosition({lat: pos.coords.latitude, lng: pos.coords.longitude, accuracy: pos.coords.accuracy})
+    setPosition({
+      lat: pos.coords.latitude, 
+      lng: pos.coords.longitude, 
+      accuracy: pos.coords.accuracy
+    })
   }
   const onError = (e) => {
     switch (e.code) {
@@ -99,7 +103,6 @@ export const useConparePosition = () => {
       // ダミーデータでチェック
       const busData = {lat: 36.5264896, lng: 136.6294528, time: 150000}
       result = check(userPosition, busData.lat, busData.lng)
-      // result=true
     } else {
       const busref = ref(busRTDB)
       for (let i=0; i < routelist.length; i++) {

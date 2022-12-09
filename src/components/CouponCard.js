@@ -1,10 +1,11 @@
+import { Card } from '@mui/material'
 import React from 'react'
 
 const CouponCard = (data) => {
   return (
-    <div>
+    <Card>
 
-    </div>
+    </Card>
   )
 }
 
