@@ -4,6 +4,7 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Footer from '../src/components/Footer'
 import Header from '../src/components/Header'
+import VerticalStepper from '../src/components/VerticalStepper'
 
 //Topページ
 const Main = () => {
@@ -18,7 +19,12 @@ const Main = () => {
       </Head>
       <Header />
       <main className={styles.main}>
-        <p>これはメインページです</p>
+        <h2>のっティGOって？</h2>
+          <ul>
+            <li>のっティを利用してスタンプを貯めます</li>
+            <li>貯めたスタンプを使って無料券を獲得できます</li>
+          </ul>
+        <VerticalStepper />
       {/* <Footer /> */}
       </main>
     </div>

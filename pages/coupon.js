@@ -20,6 +20,7 @@ const Coupon = () => {
         getUserData(user.uid)
       }
     })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[open])
 
   const handleClick = (event) => {
