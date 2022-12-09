@@ -16,6 +16,7 @@ const Stamp = () => {
 
   const today = new Date()
   const [t_year, t_month, t_day] = [today.getFullYear(), today.getMonth(), today.getDay()]
+  
   // ボタン押したときの処理
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -69,12 +70,12 @@ const Stamp = () => {
       {userData ? <div>
       <p>Flag: {flag ? "true" : "false"}</p>
       <p>stampnum:{userData.stamp}</p>
-      <p>coupon:{userData.coupon}</p>
+      <p>coupon:{userData.coupon.length}</p>
       </div>: null}
       <hr />
       <p>mylat: {position.lat}</p>
       <p>mylng: {position.lng}</p>
-
+      
       <hr />
       {su ? <Alert severity="success">Position OK</Alert> : <Alert severity='warning' icon={false}><CircularProgress size={'1rem'}/>位置情報を取得中です</Alert>}
       {uid ? <Alert severity="success">Login OK</Alert> : <Alert severity='error'>ログインしていません</Alert>}

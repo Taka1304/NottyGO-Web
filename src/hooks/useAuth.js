@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useRouter } from "next/router"
 import { userAuth, userDB } from "../firebase/client"
-import { doc, getDoc, serverTimestamp, collection, setDoc, Timestamp } from "firebase/firestore"
+import { doc, getDoc, serverTimestamp, collection, setDoc, Timestamp, FieldValue } from "firebase/firestore"
 import { 
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -23,14 +23,12 @@ export const useSignup = () => {
         // stamp: number
         // updateAt: TimeStamp(初期値は0)
         //FireStoreにユーザーデータを追加
-        
+
         await setDoc(doc(collection(userDB, 'users'), res.user.uid),{
           email: res.user.email,
           stamp: 0,
           updateAt: Timestamp.fromDate(new Date(null)),
-          coupon : [{
-            name: "test"
-          }]
+          coupon : []
         })
       })
       .catch(err => {
