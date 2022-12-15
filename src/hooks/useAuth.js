@@ -94,6 +94,7 @@ export const usePasswordReset = () => {
     sendPasswordResetEmail(userAuth, email)
       .then(() => {
         setSuccess(true)
+        setError(null)
         setTimeout(() => {
           void router.push("/login")
         }, 2000)

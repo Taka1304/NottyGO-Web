@@ -12,10 +12,10 @@ const Main = () => {
   return (
     <div>
       <Head>
-        <title>のっティGO</title>
+        <title>のっティGO | Notty-GO</title>
         <meta name="description" 
-          content="のっティに乗ってポイントをゲット！お得にのっティを利用しよう！" />
-        <link rel="icon" href="/favicon.ico" />
+          content="のっティに乗ってスタンプをゲット！お得にのっティを利用しよう！" />
+        <link rel="icon" href="/imgaes/favicon.ico" />
       </Head>
       <Header />
       <main className={styles.main}>

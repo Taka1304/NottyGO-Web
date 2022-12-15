@@ -2,10 +2,9 @@ import React, { forwardRef, useEffect, useState } from 'react'
 import Header from '../src/components/Header'
 import { userAuth } from '../src/firebase/client'
 import { useUserData } from '../src/hooks/useStamp'
-import { Button, Modal } from '@mui/material'
+import { Button, Modal, Box } from '@mui/material'
 import RefModal from '../src/components/RefModal'
 import CouponCard from '../src/components/CouponCard'
-
 
 
 const Coupon = () => {
@@ -33,12 +32,12 @@ const Coupon = () => {
     setOpen(false)
   }
   return (
-    <div>
+    <>
       <Header />
-      <div >
+      <Box flex="row" >
         <h3>クーポン一覧</h3>
         <Button variant='text' onClick={handleClick}>クーポンを交換する</Button>
-      </div>
+      </Box>
       
       {userData.coupon ? userData.coupon.map((cpn, i) => (
         <div key={i}>
@@ -53,7 +52,7 @@ const Coupon = () => {
       >
         <RefModal stamp={userData.stamp} uid={uid}/>
       </Modal>
-    </div>
+    </>
   )
 }
 

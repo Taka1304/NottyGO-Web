@@ -8,36 +8,39 @@ import Image from 'next/image';
 
 const steps = [
   {
-    label: 'このアプリの使い方',
-    image: '',
-    description: 'ボタンを押すと、次に進みます'
+    label: 'このアプリの詳しい使い方',
+    image: '',  //のっティの画像
+    description: 'ボタンを押して次に進みます'
   },
   {
     label: 'ユーザー登録 & ログイン',
-    image: '',
-    description: `ボタンからユーザー登録ができます。
-                既にユーザー登録をお済みの方はログインをしてください。`
+    image: '/images/step1.png',
+    description: `右上にあるボタンから、ユーザー登録ができます。
+                既にユーザー登録がお済みの方はログインをしてください。`
   },
   {
     label: 'スタンプ獲得ページに移動する。',
-    image: '',
-    description: 'ヘッダー左上にあるメニューボタンの中にある「スタンプカード」から移動します'
+    image: '/images/step2.png',
+    description: '左上にあるメニューボタンの中にある「スタンプカード」から移動します'
   },
   {
     label: '位置情報の使用を許可する',
-    image: '',
-    description: `バスに乗っていることを確認するために位置情報を利用しています。
-                皆様の位置情報はサーバーには送信されず、こちらが収集することはございません。`
+    image: '',  // 位置情報アラート画面
+    description: `のっティに乗っていることを確認するために位置情報を利用しています。
+                皆様の位置情報はサーバーに送信されず、こちらが収集することはございません。`
   },
   {
     label: 'スタンプを獲得する',
-    image: '',
-    description: `バスに乗った状態でボタンを押します`
+    image: '',  // スタンプゲットボタン
+    description: `のっティに乗った状態でボタンを押します。
+                ボタンを押すには「ログイン」「位置情報の許可」「本日のスタンプ未獲得」の条件があります。\n
+                成功するとスタンプが1つ獲得できます。
+                スタンプは1日1つまでとなっています。`
   },
   {
     label: 'クーポンを交換する',
-    image: '',
-    description: `スタンプを7個で1つのバス無料券と交換することができます。`
+    image: '',  // クーポン交換モーダルの画面
+    description: `スタンプ7個で1つののっティ無料券と交換することができます。`
   },
   {
     label: 'クーポンを利用する',
@@ -74,7 +77,7 @@ const VerticalStepper = () => {
                 )
               }
             >
-              {step.label}
+              <Typography>{step.label}</Typography>
             </StepLabel>
             <StepContent>
               <Typography>{step.description}</Typography>
@@ -89,14 +92,14 @@ const VerticalStepper = () => {
                     onClick={handleNext}
                     sx={{ mt: 1, mr: 1 }}
                   >
-                    {index === steps.length - 1 ? 'Finish' : 'Continue'}
+                    {index === steps.length - 1 ? '完了' : '次へ'}
                   </Button>
                   <Button
                     disabled={index === 0}
                     onClick={handleBack}
                     sx={{ mt: 1, mr: 1 }}
                   >
-                    Back
+                    戻る
                   </Button>
                 </div>
               </Box>
@@ -105,10 +108,10 @@ const VerticalStepper = () => {
         ))}
       </Stepper>
       {activeStep === steps.length && (
-        <Paper square elevation={0} sx={{ p: 3 }}>
+        <Paper square elevation={0} sx={{ p: 3 ,bgcolor: 'background.default' }}>
           <Typography>これで基本の使い方は完璧です!</Typography>
           <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
-            もう一度見る
+            もう一度みる
           </Button>
         </Paper>
       )}
