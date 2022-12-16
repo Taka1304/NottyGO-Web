@@ -54,9 +54,9 @@ const CouponModal = ({stamp, uid, fref}) => {
 
   return (
     <Box sx={style} ref={fref} tabIndex={0}>
-      <Typography variant='h4' sx={{alignItems: "center"}}>クーポン交換</Typography>
-      {<Typography>現在スタンプを{nowStamp}個持っています</Typography>}
-      <Typography>スタンプ7個でバス無料券を1つ交換できます</Typography>
+      <Typography variant='h4' sx={{justifyContent: "center", color: "black", display: "flex", }}>クーポン交換</Typography>
+      {<Typography sx={{color: "black"}}>現在スタンプを{nowStamp}個持っています</Typography>}
+      <Typography sx={{color: "black"}}>スタンプ7個でバス無料券を1つ交換できます</Typography>
       {nowStamp < 7 ? <Alert severity='error'>スタンプが不足しています</Alert>:
       <div>
         <InputField>

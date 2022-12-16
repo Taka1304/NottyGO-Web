@@ -5,6 +5,7 @@ import { useUserData } from '../src/hooks/useStamp'
 import { Button, Modal, Box } from '@mui/material'
 import RefModal from '../src/components/RefModal'
 import CouponCard from '../src/components/CouponCard'
+import { NextSeo } from 'next-seo'
 
 
 const Coupon = () => {
@@ -33,6 +34,10 @@ const Coupon = () => {
   }
   return (
     <>
+      <NextSeo 
+        title='クーポン'
+        description='貯めたスタンプでのっティ無料券を交換できます!'
+      />
       <Header />
       <Box flex="row" >
         <h3>クーポン一覧</h3>

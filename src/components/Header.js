@@ -67,10 +67,9 @@ function ResponsiveAppBar() {
     },[success])
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           <Typography
             variant="h6"
             noWrap
@@ -195,15 +194,6 @@ function ResponsiveAppBar() {
                   <Typography textAlign="center" >{page.label}</Typography>
                 </MenuItem>
               ))}
-              {/* <MenuItem onClick={() => {
-                logout()
-                setAnchorElUser(null)
-              }}>
-                <ListItemIcon>
-                  <LogoutIcon />
-                  ログアウト
-                </ListItemIcon>
-              </MenuItem> */}
             </Menu>
           </Box>
         </Toolbar>
