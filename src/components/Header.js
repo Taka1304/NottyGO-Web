@@ -46,7 +46,7 @@ function ResponsiveAppBar() {
   const [anchorElUser, setAnchorElUser] = useState(null)
   const { success, error, logout } = useLogout()
 
-  const handleClose = (event, reason) => {
+  const handleClose = (reason) => {
     if (reason === 'clickaway') {
       return
     }

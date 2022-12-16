@@ -61,7 +61,7 @@ export const useUserPosition = () => {
   const onError = (e) => {
     switch (e.code) {
       case 1:
-        setError("位置情報の使用を許可してください")
+        setError("位置情報の使用を許可してください。")
         break
       case 2:
         setError("内部エラーが発生しました。")
@@ -72,13 +72,13 @@ export const useUserPosition = () => {
   }
 
   const getPosition = () => {
-    // console.log("Search Current Position")  // 探索開始
-    const watchId = navigator.geolocation.watchPosition(onSuccess, onError, options)
     setSuccess(false)
+    const watchId = navigator.geolocation.watchPosition(onSuccess, onError, options)
     // 5秒で終了する
     setTimeout(() => {
       navigator.geolocation.clearWatch(watchId)
-      setSuccess(true)
+      setSuccess(false)
+      setError("取得時間制限を超過しました。")
     }, 5000)
   }
 
