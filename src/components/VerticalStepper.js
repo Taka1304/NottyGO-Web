@@ -1,10 +1,13 @@
 import * as React from 'react';
-import { Container, Stepper, Step, StepLabel, StepContent } from '@mui/material';
+import { makeStyles } from '@mui/styles';
+import { Stepper, Step, StepLabel, StepContent } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
+import { styled } from '@mui/styles';
+
 
 const steps = [
   {
@@ -50,6 +53,19 @@ const steps = [
   }
 ];
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiStepLabel-vertical .label': { color: "#FFF" },
+   },
+}))
+
+const StyledStepLabel = styled(StepLabel)({
+  "& .MuiStepLabel-labelContainer": { color : "inherit" },
+  "& .MuiStepLabel-label.Mui-completed": { color: "inherit" },
+  "& .MuiStepLabel-label.Mui-active": { color: "inherit" },
+  "& .MuiStepLabel-label.Mui-disabled": { color: "inherit" }
+});
+
 const VerticalStepper = () => {
   const [activeStep, setActiveStep] = React.useState(0);
 
@@ -66,19 +82,19 @@ const VerticalStepper = () => {
   };
 
   return (
-    <Container maxWidth="sm">
+    <Box width="90%">
       <Stepper activeStep={activeStep} orientation="vertical">
         {steps.map((step, index) => (
           <Step key={step.label}>
-            <StepLabel
+            <StyledStepLabel
               optional={
                 index === 6 && (
                   <Typography variant="caption">Last step</Typography>
-                )
-              }
-            >
-              <Typography>{step.label}</Typography>
-            </StepLabel>
+                  )
+                }
+                >
+              {step.label}
+            </StyledStepLabel>
             <StepContent>
               <Typography>{step.description}</Typography>
               {/* <Image 
@@ -108,14 +124,14 @@ const VerticalStepper = () => {
         ))}
       </Stepper>
       {activeStep === steps.length && (
-        <Paper square elevation={0} sx={{ p: 3 ,bgcolor: 'background.default' }}>
+        <Box square elevation={0} sx={{ p: 3  }}>
           <Typography>これで基本の使い方は完璧です!</Typography>
           <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
             もう一度みる
           </Button>
-        </Paper>
+        </Box>
       )}
-    </Container>
+    </Box>
   );
 }
 

@@ -25,7 +25,6 @@ const Main = () => {
             <li>貯めたスタンプを使って無料券を獲得できます</li>
           </ul>
         <VerticalStepper />
-      {/* <Footer /> */}
       </main>
     </div>
   )

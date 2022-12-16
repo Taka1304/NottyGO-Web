@@ -195,15 +195,6 @@ function ResponsiveAppBar() {
                   <Typography textAlign="center" >{page.label}</Typography>
                 </MenuItem>
               ))}
-              {/* <MenuItem onClick={() => {
-                logout()
-                setAnchorElUser(null)
-              }}>
-                <ListItemIcon>
-                  <LogoutIcon />
-                  ログアウト
-                </ListItemIcon>
-              </MenuItem> */}
             </Menu>
           </Box>
         </Toolbar>
