@@ -63,7 +63,7 @@ const StyledStepLabel = styled(StepLabel)({
   "& .MuiStepLabel-labelContainer": { color : "inherit" },
   "& .MuiStepLabel-label.Mui-completed": { color: "inherit" },
   "& .MuiStepLabel-label.Mui-active": { color: "inherit" },
-  "& .MuiStepLabel-label.Mui-disabled": { color: "inherit" }
+  "& .MuiStepLabel-label.Mui-disabled": { color: "inherit", opacity: "0.7" }
 });
 
 const VerticalStepper = () => {

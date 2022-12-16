@@ -4,7 +4,7 @@ import React from 'react'
 const CouponCard = (data) => {
   return (
     <Card>
-
+      
     </Card>
   )
 }
