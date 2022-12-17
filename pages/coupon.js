@@ -6,6 +6,7 @@ import { Button, Modal, Box } from '@mui/material'
 import RefModal from '../src/components/RefModal'
 import CouponCard from '../src/components/CouponCard'
 import { NextSeo } from 'next-seo'
+import Grid from '@mui/material/Unstable_Grid2'
 
 
 const Coupon = () => {
@@ -47,12 +48,13 @@ const Coupon = () => {
         <h3 >クーポン一覧</h3>
         <Button variant='outlined' onClick={handleClick} sx={{my: 2}}>クーポンを交換する</Button>
       </Box>
-      
-      {userData.coupon ? userData.coupon.map((cpn, i) => (
-        <div key={i}>
-          <CouponCard data={cpn}/>
-        </div>
-      )): null}
+      <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+        {userData.coupon ? userData.coupon.map((cpn, i) => (
+          <Grid key={i} xs={2} sm={4} md={4}>
+            <CouponCard title={cpn.name} expiration_date={cpn.expiration_date}/>
+          </Grid>
+          )): null}
+      </Grid>
       <Modal
         open={open}
         onClose={handleClose}
