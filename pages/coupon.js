@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../src/components/Header'
 import { userAuth } from '../src/firebase/client'
 import { useUserData } from '../src/hooks/useStamp'
@@ -11,7 +11,7 @@ import { NextSeo } from 'next-seo'
 const Coupon = () => {
   const { userData, getUserData } = useUserData()
   const [open, setOpen] = useState(false)
-  const [uid, setUid]= useState()
+  const [uid, setUid] = useState()
   
   useEffect(() => {
     userAuth.onAuthStateChanged((user) => {
@@ -39,9 +39,13 @@ const Coupon = () => {
         description='貯めたスタンプでのっティ無料券を交換できます!'
       />
       <Header />
-      <Box flex="row" >
-        <h3>クーポン一覧</h3>
-        <Button variant='text' onClick={handleClick}>クーポンを交換する</Button>
+      <Box sx={{
+        display: "flex", 
+        flexDirection: "row", 
+        justifyContent: "space-around"}} 
+        >
+        <h3 >クーポン一覧</h3>
+        <Button variant='outlined' onClick={handleClick} sx={{my: 2}}>クーポンを交換する</Button>
       </Box>
       
       {userData.coupon ? userData.coupon.map((cpn, i) => (
