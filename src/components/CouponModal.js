@@ -1,7 +1,7 @@
 import React,{ useEffect, useState } from 'react'
 import { Alert, TextField, Button, Box, Typography } from '@mui/material'
 import styled from 'styled-components'
-import { useCoupon } from '../hooks/useCoupon'
+import { useCouponData } from '../hooks/useCoupon'
 
 
 const style = {
@@ -27,7 +27,7 @@ const CouponModal = ({stamp, uid, fref}) => {
 
   const [count, setCount] = useState(0)
   const [nowStamp, setNowStamp] = useState(stamp)
-  const { success, error, getCoupon } = useCoupon()
+  const { success, error, getCoupon } = useCouponData()
 
   const handleClick = (value, e) => {
     e.preventDefault()

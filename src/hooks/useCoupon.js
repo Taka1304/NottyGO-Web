@@ -1,12 +1,16 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { userDB } from "../firebase/client";
-import { doc, increment, updateDoc, collection, arrayUnion, Timestamp } from "firebase/firestore";
+import { doc, increment, updateDoc, collection, arrayUnion, Timestamp,arrayRemove } from "firebase/firestore";
 
 
-export const useCoupon = () => {
-  const [success, setSuccess] = useState()
+export const useCouponData = () => {
+  const [success, setSuccess] = useState(false)
   const [error, setError] = useState()
 
+  const resetState = () => {
+    setSuccess(false)
+    setError(null)
+  }
   const getCoupon = async (uid, num) => {
     const userRef = doc(collection(userDB, '/users'), uid)
     let dt = new Date()
@@ -27,9 +31,6 @@ export const useCoupon = () => {
         expiration_date: Timestamp.fromDate(new Date(`${y}/${m}/${d}`))
       })
     }
-
-    // console.log(...couponArray)
-
     try {
       //データの更新
       await updateDoc(userRef, {
@@ -42,5 +43,20 @@ export const useCoupon = () => {
       console.log(error)
     }
   }
-  return { success, error, getCoupon }
+  const useCoupon = async(uid, coupon) => {
+    setSuccess(false)
+    setError(null)
+    const userRef = doc(collection(userDB, '/users'), uid)
+    try {
+      //データの更新
+      await updateDoc(userRef, {
+        coupon: arrayRemove(coupon)
+      })
+      setSuccess(true)
+    } catch (error) {
+      setError(error)
+      console.log(error)
+    }
+  }
+  return { success, error, getCoupon, useCoupon, resetState }
 }
