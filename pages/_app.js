@@ -21,6 +21,7 @@ const MyApp = ({ Component, pageProps }) => {
   <>
   <ThemeProvider theme={theme}>
     <Head>
+      <link rel="shortcut icon" href="/images/favicon.ico" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
     <DefaultSeo {...SEO} />
