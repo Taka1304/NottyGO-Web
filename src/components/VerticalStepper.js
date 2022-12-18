@@ -1,9 +1,8 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@mui/styles';
 import { Stepper, Step, StepLabel, StepContent } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 import { styled } from '@mui/styles';
@@ -53,12 +52,6 @@ const steps = [
   }
 ];
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& .MuiStepLabel-vertical .label': { color: "#FFF" },
-   },
-}))
-
 const StyledStepLabel = styled(StepLabel)({
   "& .MuiStepLabel-labelContainer": { color : "inherit" },
   "& .MuiStepLabel-label.Mui-completed": { color: "inherit" },
@@ -67,7 +60,7 @@ const StyledStepLabel = styled(StepLabel)({
 });
 
 const VerticalStepper = () => {
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -97,10 +90,13 @@ const VerticalStepper = () => {
             </StyledStepLabel>
             <StepContent>
               <Typography>{step.description}</Typography>
-              {/* <Image 
+              {step.image !== "" && <Image 
+                objectFit='contain'
+                height={200}
+                width={200}
                 src={step.image}
                 alt={step.image}
-              /> */}
+              />}
               <Box sx={{ mb: 2 }}>
                 <div>
                   <Button

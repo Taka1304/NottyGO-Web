@@ -6,16 +6,15 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
-import LogoutIcon from '@mui/icons-material/Logout';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import { userAuth } from '../firebase/client';
 import { useLogout } from '../hooks/useAuth';
-import { Alert, ListItemIcon, Snackbar } from '@mui/material';
+import { Alert, Snackbar } from '@mui/material';
+import LogoView from './atoms/LogoView';
 
 const menuPages = [
   {
@@ -44,7 +43,7 @@ function ResponsiveAppBar() {
   const [user, setUser] = useState(null)
   const [anchorElNav, setAnchorElNav] = useState(null)
   const [anchorElUser, setAnchorElUser] = useState(null)
-  const { success, error, logout } = useLogout()
+  const { success, logout } = useLogout()
 
   const handleClose = (reason) => {
     if (reason === 'clickaway') {
@@ -126,7 +125,6 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
-          {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
           <Typography
             variant="h5"
             noWrap
@@ -145,6 +143,7 @@ function ResponsiveAppBar() {
           >
             のっティGO
           </Typography>
+          {/* <LogoView /> */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {menuPages.map((page) => (
               <Button

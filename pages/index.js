@@ -5,6 +5,7 @@ import styles from '../styles/Home.module.css'
 import Footer from '../src/components/Footer'
 import Header from '../src/components/Header'
 import VerticalStepper from '../src/components/VerticalStepper'
+import TransrationLogo from '../src/components/atoms/TransrationLogo'
 
 //Topページ
 const Main = () => {
@@ -15,7 +16,6 @@ const Main = () => {
         <title>のっティGO | Notty-GO</title>
         <meta name="description" 
           content="のっティに乗ってスタンプをゲット！お得にのっティを利用しよう！" />
-        <link rel="icon" href="/imgaes/favicon.ico" />
       </Head>
       <Header />
       <main className={styles.main}>
