@@ -23,3 +23,18 @@ a {
     background: black;
   }
 }
+
+ svg .svg-elem-1 {
+  stroke-dashoffset: 1249.90771484375px;
+  stroke-dasharray: 1249.90771484375px;
+  fill: transparent;
+  -webkit-transition: stroke-dashoffset 1s cubic-bezier(0.47, 0, 0.745, 0.715) 0s,
+                        fill 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) 0.8s;
+          transition: stroke-dashoffset 1s cubic-bezier(0.47, 0, 0.745, 0.715) 0s,
+                fill 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) 0.8s;
+}
+
+svg.active .svg-elem-1 {
+  stroke-dashoffset: 0;
+  fill: rgb(174, 213, 129);
+}

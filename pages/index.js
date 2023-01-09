@@ -2,8 +2,8 @@ import React from 'react'
 import Head from 'next/head'
 
 import styles from '../styles/Home.module.css'
-import Footer from '../src/components/Footer'
-import Header from '../src/components/Header'
+import Footer from '../src/components/Layout/Footer'
+import Header from '../src/components/Layout/Header'
 import VerticalStepper from '../src/components/VerticalStepper'
 
 //Topページ
@@ -15,7 +15,6 @@ const Main = () => {
         <title>のっティGO | Notty-GO</title>
         <meta name="description" 
           content="のっティに乗ってスタンプをゲット！お得にのっティを利用しよう！" />
-        <link rel="icon" href="/imgaes/favicon.ico" />
       </Head>
       <Header />
       <main className={styles.main}>

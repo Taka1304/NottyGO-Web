@@ -23,6 +23,7 @@ const MyApp = ({ Component, pageProps }) => {
     <Head>
       <link rel="shortcut icon" href="/images/favicon.ico" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      <meta name="google-site-verification" content="lTEmTo7rTpJ9YBVBMcZXItt5aRHsDfezb9pctFocxMg" />
     </Head>
     <DefaultSeo {...SEO} />
     <Component {...pageProps} />

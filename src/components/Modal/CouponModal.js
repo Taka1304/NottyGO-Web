@@ -1,7 +1,7 @@
 import React,{ useEffect, useState } from 'react'
 import { Alert, TextField, Button, Box, Typography } from '@mui/material'
 import styled from 'styled-components'
-import { useCouponData } from '../hooks/useCoupon'
+import { useCouponData } from '../../hooks/useCoupon'
 
 
 const style = {
@@ -61,11 +61,20 @@ const CouponModal = ({stamp, uid, fref}) => {
       <div>
         <InputField>
           <Button variant='outlined' onClick={(e) => handleClick(-1, e)}>-1</Button>
-          <TextField inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} value={count}
+          <TextField 
+            inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+            value={count}
             onChange={(e) => setCount(Math.min(Number(e.target.value),Math.floor(stamp / 7)))}/>
           <Button variant='outlined' onClick={(e) => handleClick(1, e)}>+1</Button>
         </InputField>
-        <Button variant='contained' color="success" onClick={handleSubmit} sx={{mt: 2, justifyContent: "center"}}>交換する</Button>
+        <Button 
+          variant='contained'
+          color="success" 
+          onClick={handleSubmit}
+          sx={{mt: 2, justifyContent: "center"}}
+          >
+          交換する
+        </Button>
         {success && !error ? <Alert severity='success'>クーポンを交換しました!</Alert>: null}
         {error && !success ? <Alert severity='error'>交換に失敗しました。時間を置いて再度お試しください。</Alert>: null}
       </div>}
