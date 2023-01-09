@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Button, Alert, CircularProgress, Box } from '@mui/material'
 import { userAuth } from '../src/firebase/client'
 import { useUserData, useConparePosition, useGetStamp, useUserPosition } from '../src/hooks/useStamp'
-import Header from '../src/components/Header'
+import Header from '../src/components/Layout/Header'
 
 
 const Stamp = () => {
