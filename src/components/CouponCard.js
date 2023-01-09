@@ -1,7 +1,7 @@
 import { Card, CardContent, CardMedia, Typography } from '@mui/material'
 import React from 'react'
 
-const CouponCard = ({title, expiration_date, handleCouponClick, index }) => {
+const CouponCard = ({ title, expiration_date, handleCouponClick, index }) => {
   const date = new Date(expiration_date.seconds*1000)
   const year = date.getFullYear()
   const month =  date.getMonth()
@@ -11,9 +11,9 @@ const CouponCard = ({title, expiration_date, handleCouponClick, index }) => {
     <Card sx={{
       bgcolor: "#FFC000",
     }}
-    component="button"
-    onClick={() => handleCouponClick(index)}
-    >
+      component="button"
+      onClick={() => handleCouponClick(index)}
+      >
       <CardContent>
         <Typography gutterBottom variant='h6' fontWeight="bold">{title}</Typography>
       </CardContent>
@@ -34,5 +34,4 @@ const CouponCard = ({title, expiration_date, handleCouponClick, index }) => {
     </Card>
   )
 }
-
 export default CouponCard

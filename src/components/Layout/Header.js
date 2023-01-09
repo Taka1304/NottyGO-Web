@@ -11,10 +11,10 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { userAuth } from '../firebase/client';
-import { useLogout } from '../hooks/useAuth';
+import { userAuth } from '../../firebase/client';
+import { useLogout } from '../../hooks/useAuth';
 import { Alert, Snackbar } from '@mui/material';
-import LogoView from './atoms/LogoView';
+import LogoView from '../atoms/LogoView';
 
 const menuPages = [
   {

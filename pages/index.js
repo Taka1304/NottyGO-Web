@@ -2,10 +2,9 @@ import React from 'react'
 import Head from 'next/head'
 
 import styles from '../styles/Home.module.css'
-import Footer from '../src/components/Footer'
-import Header from '../src/components/Header'
+import Footer from '../src/components/Layout/Footer'
+import Header from '../src/components/Layout/Header'
 import VerticalStepper from '../src/components/VerticalStepper'
-import TransrationLogo from '../src/components/atoms/TransrationLogo'
 
 //Topページ
 const Main = () => {

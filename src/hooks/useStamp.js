@@ -96,9 +96,11 @@ export const useConparePosition = () => {
       const allowable_lat = radius / 110.946
       const allowable_lng = radius / 87.4082
       // console.log(Math.abs(userPosition.lat - busLat))
-      return Math.abs(userPosition.lat - busLat) <= allowable_lat && Math.abs(userPosition.lng - busLng) <= allowable_lng
+      return userPosition.acuuracy < 300 && Math.abs(userPosition.lat - busLat) <= allowable_lat && Math.abs(userPosition.lng - busLng) <= allowable_lng
     }
+
     let result = false
+
     if (busRTDB == null) {
       // ダミーデータでチェック
       const busData = {lat: 36.5264896, lng: 136.6294528, time: 150000}
@@ -109,8 +111,7 @@ export const useConparePosition = () => {
         get(child(busref, `BusLocation/route_${routelist[i]}`))
           .then(snapshot => {
             let data = snapshot.val()
-            // timeを見てデータが正しいか確認
-
+            // timeを見てデータが正しいか確認(未実装)
 
             result = check(userPosition, data.lat, data.lng)
           })
