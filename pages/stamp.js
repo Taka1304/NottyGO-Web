@@ -48,10 +48,10 @@ const Stamp = () => {
     if ('geolocation' in navigator) {
       setAvailable(true);
     }
-    userAuth.onAuthStateChanged(async(user) => {
+    userAuth.onAuthStateChanged((user) => {
       if (user) {
         setUid(user.uid)
-        await getUserData(user.uid)
+        getUserData(user.uid)
         const date = userData.date
         const [year, month, day] = [date.getFullYear(), date.getMonth(), date.getDay()]
         if (year === t_year && month === t_month && day === t_day) {
@@ -104,7 +104,8 @@ const Stamp = () => {
             disabled>
               上記項目を満たしてください
           </Button>}
-        {/* <Button 
+        {/*<hr /> <br /> 
+        <Button 
           variant='contained'
           onClick={ () => handleTestButton(true)}
         >
