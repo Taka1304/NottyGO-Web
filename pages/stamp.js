@@ -3,6 +3,7 @@ import { Button, Alert, CircularProgress, Box } from '@mui/material'
 import { userAuth } from '../src/firebase/client'
 import { useUserData, useConparePosition, useGetStamp, useUserPosition } from '../src/hooks/useStamp'
 import Header from '../src/components/Layout/Header'
+import Head from 'next/head'
 
 
 const Stamp = () => {
@@ -31,16 +32,26 @@ const Stamp = () => {
       }
     }, 5010)
   }
+
+  const handleTestButton = ({flag}, event) => {
+    event.preventDefault()
+
+    if (flag) {
+
+    } else {
+
+    }
+  }
   
   // First setData
   useEffect(() => {
     if ('geolocation' in navigator) {
       setAvailable(true);
     }
-    userAuth.onAuthStateChanged((user) => {
+    userAuth.onAuthStateChanged(async(user) => {
       if (user) {
         setUid(user.uid)
-        getUserData(user.uid)
+        await getUserData(user.uid)
         const date = userData.date
         const [year, month, day] = [date.getFullYear(), date.getMonth(), date.getDay()]
         if (year === t_year && month === t_month && day === t_day) {
@@ -66,6 +77,12 @@ const Stamp = () => {
 
   return (
     <>
+    <Head>
+      <meta 
+        name="description"
+        content="のっティに乗ってスタンプをゲット！お得にのっティを利用しよう！">
+      </meta>
+    </Head>
     <Header />
     {<h3>現在 スタンプを{userData.stamp}個もっています</h3>}
     <hr />
@@ -87,6 +104,18 @@ const Stamp = () => {
             disabled>
               上記項目を満たしてください
           </Button>}
+        {/* <Button 
+          variant='contained'
+          onClick={ () => handleTestButton(true)}
+        >
+          絶対成功するボタン
+        </Button>
+        <Button 
+          variant='contained'
+          onClick={ () => handleTestButton(false)}
+        >
+          絶対失敗するボタン
+        </Button> */}
       </Box>
       {success && !error ? <Alert severity='success'>スタンプ1つ獲得しました!</Alert>: null}
       {error && !success ? <Alert severity='error'>エラー</Alert>:null}
