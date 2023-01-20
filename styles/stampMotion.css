@@ -1,0 +1,82 @@
+.animated {
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	-webkit-animation-iteration-count: 1;
+	animation-iteration-count: 1;
+}
+
+@-webkit-keyframes image {
+	from {
+		-webkit-animation-timing-function: ease-in;
+		-webkit-transform: translate(0px,0px) scale(3,3) rotate(-20deg) skew(0deg,0deg);
+		opacity: 1.0;
+	} to {
+		-webkit-animation-timing-function: linear;
+		-webkit-transform: translate(0px,0px) scale(1,1) rotate(0deg) skew(0deg,0deg);
+		opacity: 1;
+	} 
+}
+
+@keyframes image {
+	from {
+		animation-timing-function: ease-in;
+		transform: translate(0px,0px) scale(3,3) rotate(-20deg) skew(0deg,0deg);
+		opacity: 1.0;
+	} to {
+		animation-timing-function: linear;
+		transform: translate(0px,0px) scale(1,1) rotate(0deg) skew(0deg,0deg);
+		opacity: 1;
+	} 
+}
+
+.image {
+	-webkit-animation-name: image;
+	animation-name: image;
+	-webkit-transform-origin: center center;
+	transform-origin: center center;
+}
+
+
+.animated-failure {
+	-webkit-animation-duration: 0.2s;
+	animation-duration: 0.2s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	animation-direction: reverse;
+	-webkit-animation-direction: reverse;
+	-webkit-animation-iteration-count: 1;
+	animation-iteration-count: 1;
+}
+
+@-webkit-keyframes failure {
+	from {
+		-webkit-animation-timing-function: linear;
+		-webkit-transform: translate(0px,0px) scale(1,1) rotate(-10deg) skew(0deg,0deg);
+		opacity: 1.0;
+	} to {
+		-webkit-animation-timing-function: linear;
+		-webkit-transform: translate(0px,0px) scale(1,1) rotate(0deg) skew(0deg,0deg);
+		opacity: 1.0;
+	} 
+}
+
+@keyframes failure {
+	from {
+		animation-timing-function: linear;
+		transform: translate(0px,0px) scale(1,1) rotate(-10deg) skew(0deg,0deg);
+		opacity: 1.0;
+	} to {
+		animation-timing-function: linear;
+		transform: translate(0px,0px) scale(1,1) rotate(0deg) skew(0deg,0deg);
+		opacity: 1.0;
+	} 
+}
+
+.failure {
+	-webkit-animation-name: failure;
+	animation-name: failure;
+	-webkit-transform-origin: center center;
+	transform-origin: center center;
+}
