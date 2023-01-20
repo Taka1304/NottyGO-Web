@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import '../styles/stampMotion.css'
 import Head from 'next/head'
 import { ThemeProvider, createTheme } from '@mui/material'
 import { SEO } from '../next-seo.config'

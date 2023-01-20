@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Alert, CircularProgress, Box } from '@mui/material'
+import { Button, Alert, CircularProgress, Box, Modal } from '@mui/material'
 import { userAuth } from '../src/firebase/client'
 import { useUserData, useConparePosition, useGetStamp, useUserPosition } from '../src/hooks/useStamp'
 import Header from '../src/components/Layout/Header'
 import Head from 'next/head'
-
+import RefStampModal from '../src/components/Modal/RefStamp'
 
 const Stamp = () => {
   // ユーザーデータの状態を管理
   const [uid, setUid] = useState(null)
   const [flag, setFlag] = useState(false) // 今日スタンプを獲得しているかの判断に使用するフラグ
   const [available, setAvailable] = useState(false) // 位置情報が使用できるかのフラグ
+  const [anime, setAnime] = useState(false)
+  const [animeFlag, setAnimeFlag] = useState(false)
+
   const { userData, getUserData } = useUserData()
   const { position, su, er, getPosition } = useUserPosition()
   const conparePosition = useConparePosition()
@@ -29,18 +32,17 @@ const Stamp = () => {
     setTimeout(() => {
       if (conparePosition(position)) {
         getStamp(uid)
+        userData.stamp += 1
       }
     }, 5010)
   }
 
-  const handleTestButton = ({flag}, event) => {
-    event.preventDefault()
-
+  const handleTestButton = (flag, event) => {
     if (flag) {
-
-    } else {
-
+      getStamp(uid)
     }
+    setAnimeFlag(flag)
+    setAnime(true)
   }
   
   // First setData
@@ -51,12 +53,7 @@ const Stamp = () => {
     userAuth.onAuthStateChanged((user) => {
       if (user) {
         setUid(user.uid)
-        getUserData(user.uid)
-        const date = userData.date
-        const [year, month, day] = [date.getFullYear(), date.getMonth(), date.getDay()]
-        if (year === t_year && month === t_month && day === t_day) {
-          setFlag(true)
-        }
+        getUserData(user.uid)        
       }
     }) 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -64,7 +61,6 @@ const Stamp = () => {
 
   useEffect(() => {
     if (uid) {
-      getUserData(uid)
       const date = userData.date
       const [year, month, day] = [date.getFullYear(), date.getMonth(), date.getDay()]
       if (year === t_year && month === t_month && day === t_day) {
@@ -72,7 +68,7 @@ const Stamp = () => {
       }
     }    
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[success])
+  },[getUserData])
 
 
   return (
@@ -80,7 +76,9 @@ const Stamp = () => {
     <Head>
       <meta 
         name="description"
-        content="のっティに乗ってスタンプをゲット！お得にのっティを利用しよう！">
+        content="のっティに乗ってスタンプをゲット！
+        一日一回スタンプを獲得できます！
+        お得にのっティを利用しよう！">
       </meta>
     </Head>
     <Header />
@@ -92,7 +90,7 @@ const Stamp = () => {
       <Box sx={{display: 'flex', justifyContent: 'center', my: 3}}>
         {available && uid && !flag ? 
           <Button 
-            size='large' 
+            size='large'
             variant='contained' 
             sx={{justifyContent: "center"}} 
             onClick={handleSubmit}>
@@ -104,22 +102,32 @@ const Stamp = () => {
             disabled>
               上記項目を満たしてください
           </Button>}
-        {/*<hr /> <br /> 
+      </Box>
+      <Box sx={{display: 'flex', justifyContent: 'center', my: 3}}>
         <Button 
           variant='contained'
           onClick={ () => handleTestButton(true)}
-        >
-          絶対成功するボタン
+          >
+          テスト用:成功する
         </Button>
         <Button 
           variant='contained'
           onClick={ () => handleTestButton(false)}
-        >
-          絶対失敗するボタン
-        </Button> */}
+          >
+          テスト用:失敗する
+        </Button>
       </Box>
+      <Modal
+      open={anime}
+      onClose={() => setAnime(false)}
+      aria-labelledby="Get-Stamp"
+      aria-describedby="Get-Stamp"
+      >
+        <RefStampModal flag={animeFlag}/>
+      </Modal>
       {success && !error ? <Alert severity='success'>スタンプ1つ獲得しました!</Alert>: null}
       {error && !success ? <Alert severity='error'>エラー</Alert>:null}
+
     </>
   )
 }
