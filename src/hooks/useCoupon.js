@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { userDB } from "../firebase/client";
-import { doc, increment, updateDoc, collection, arrayUnion, Timestamp,arrayRemove } from "firebase/firestore";
+import { doc, increment, updateDoc, collection, arrayUnion, Timestamp, arrayRemove } from "firebase/firestore";
 
 
 export const useCouponData = () => {
@@ -14,21 +14,20 @@ export const useCouponData = () => {
   const getCoupon = async (uid, num) => {
     const userRef = doc(collection(userDB, '/users'), uid)
     let dt = new Date()
-
-    const y = dt.getFullYear()+1
-    const m = dt.getMonth()
-    const d = dt.getDay()
+    dt.setFullYear(dt.getFullYear() + 1)
     
     const hh = dt.getHours()*100000
     const mm = dt.getMinutes()*1000
     const ss = dt.getSeconds()*10
 
     const couponArray = []
+    const date = Timestamp.fromDate(dt)
+
     for (let i=0; i < num; i++) {
       couponArray.push({
         id: hh+mm+ss+i,
         name: "バス無料券",
-        expiration_date: Timestamp.fromDate(new Date(`${y}/${m}/${d}`))
+        expiration_date: date
       })
     }
     try {
